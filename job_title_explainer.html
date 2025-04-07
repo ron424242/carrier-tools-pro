@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carrier Tools Pro - Job Title Explainer</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Job Title Explainer - Carrier Tools Pro</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
@@ -14,17 +14,57 @@
       <a href="tools.html">Tools</a>
       <a href="about.html">About Us</a>
       <a href="contact.html">Contact</a>
-      <a href="cookie-policy.html">Cookies</a>
-      <a href="privacy-policy.html">Privacy</a>
     </nav>
   </header>
-  <section>
-    <h2>Job Title Explainer</h2>
-    <p>Tool content will be added here.</p>
+
+  <section class="tool-card">
+    <h2 style="color:#00d4ff;">Job Title Explainer</h2>
+    <p style="color:#ccc;">Enter a job title to learn more about what it means.</p>
+    <input 
+      type="text" 
+      id="jobTitleInput" 
+      placeholder="e.g., Software Engineer"
+      style="padding: 0.75rem 1rem; border-radius: 12px; border: none; font-size: 1rem; width: 80%; max-width: 400px; margin-top: 1rem; margin-bottom: 1rem; background: #1e1e2f; color: #fff;" 
+    />
+    <br/>
+    <button 
+      onclick="explainJobTitle()" 
+      style="padding: 0.75rem 2rem; border-radius: 12px; background-color: #00d4ff; border: none; color: #0f0f1a; font-weight: bold; cursor: pointer; font-size: 1rem;">
+      Explain
+    </button>
+
+    <div id="explanation" style="margin-top: 2rem; font-size: 1.1rem; color: #fff;"></div>
   </section>
+
   <footer>
-    <a href="cookie-policy.html">Cookie Policy</a> |
-    <a href="privacy-policy.html">Privacy Policy</a>
+    <p>
+      <a href="cookie-policy.html">Cookie Policy</a> |
+      <a href="privacy-policy.html">Privacy Policy</a><br/>
+      &copy; 2025 Carrier Tools Pro. All rights reserved.
+    </p>
   </footer>
+
+  <script>
+    function explainJobTitle() {
+      const title = document.getElementById('jobTitleInput').value.trim().toLowerCase();
+      const explanationDiv = document.getElementById('explanation');
+
+      const explanations = {
+        "data analyst": "A Data Analyst collects, processes, and analyzes data to help companies make informed decisions.",
+        "software engineer": "A Software Engineer designs, develops, tests, and maintains software applications and systems.",
+        "project manager": "A Project Manager oversees planning and execution of projects, ensuring goals are met on time and within budget.",
+        "digital marketer": "A Digital Marketer promotes products or services through digital channels like social media, email, and websites.",
+        "ux designer": "A UX Designer focuses on creating user-friendly and enjoyable experiences for digital products.",
+        "hr manager": "An HR Manager oversees recruitment, employee relations, and HR policies within an organization.",
+        "accountant": "An Accountant prepares financial records, ensures accuracy, and helps with budgeting and tax filing."
+      };
+
+      if (title && explanations[title]) {
+        explanationDiv.innerHTML = `<strong style="color:#00d4ff;">${title.charAt(0).toUpperCase() + title.slice(1)}:</strong> ${explanations[title]}`;
+      } else {
+        explanationDiv.innerHTML = `<span style="color:#ccc;">Sorry, we don't have an explanation for that title yet.</span>`;
+      }
+    }
+  </script>
 </body>
 </html>
