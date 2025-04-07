@@ -1,30 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carrier Tools Pro - Career Path Quiz</title>
+  <meta name="description" content="Take the Career Path Quiz on Carrier Tools Pro to discover your ideal job field based on your interests, strengths, and personality. Get personalized career insights and recommendations.">
+  <meta name="keywords" content="career path quiz, career quiz, personality test, job recommendation, career guidance">
+  <meta name="author" content="Carrier Tools Pro">
+  <title>Career Path Quiz - Carrier Tools Pro</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .quiz-container { max-width: 700px; margin: 0 auto; padding: 20px; background: #fff; border-radius: 12px; box-shadow: 0 0 12px rgba(0,0,0,0.1); }
+    .question { margin-bottom: 15px; }
+    .question h4 { margin-bottom: 10px; }
+    .result { margin-top: 20px; font-weight: bold; font-size: 1.2em; color: #2a9d8f; }
+    .btn { background-color: #2a9d8f; color: #fff; padding: 10px 16px; border: none; border-radius: 6px; cursor: pointer; }
+    .btn:hover { background-color: #21867a; }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Carrier Tools Pro</h1>
+    <h1>Career Path Quiz</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="tools.html">Tools</a>
-      <a href="about.html">About Us</a>
-      <a href="contact.html">Contact</a>
-      <a href="cookie-policy.html">Cookies</a>
-      <a href="privacy-policy.html">Privacy</a>
     </nav>
-  </header>
-  <section>
-    <h2>Career Path Quiz</h2>
-    <p>Tool content will be added here.</p>
-  </section>
-  <footer>
-    <a href="cookie-policy.html">Cookie Policy</a> |
-    <a href="privacy-policy.html">Privacy Policy</a>
+  </header>  <main>
+    <section class="quiz-container">
+      <form id="quizForm">
+        <div class="question">
+          <h4>1. What do you enjoy doing the most?</h4>
+          <label><input type="radio" name="q1" value="creative"> Designing, writing, or creating</label><br>
+          <label><input type="radio" name="q1" value="technical"> Solving technical problems</label><br>
+          <label><input type="radio" name="q1" value="people"> Helping or working with people</label><br>
+          <label><input type="radio" name="q1" value="business"> Analyzing business operations</label>
+        </div><div class="question">
+      <h4>2. What is your strongest skill?</h4>
+      <label><input type="radio" name="q2" value="creative"> Creativity</label><br>
+      <label><input type="radio" name="q2" value="technical"> Logical thinking</label><br>
+      <label><input type="radio" name="q2" value="people"> Communication</label><br>
+      <label><input type="radio" name="q2" value="business"> Decision making</label>
+    </div>
+
+    <div class="question">
+      <h4>3. How do you prefer to work?</h4>
+      <label><input type="radio" name="q3" value="creative"> Independently on innovative tasks</label><br>
+      <label><input type="radio" name="q3" value="technical"> With systems and code</label><br>
+      <label><input type="radio" name="q3" value="people"> In teams or client-facing roles</label><br>
+      <label><input type="radio" name="q3" value="business"> Strategizing and planning</label>
+    </div>
+
+    <button type="button" class="btn" onclick="calculateResult()">Submit</button>
+  </form>
+
+  <div id="result" class="result"></div>
+</section>
+
+  </main>  <script>
+    function calculateResult() {
+      const answers = [
+        document.querySelector('input[name="q1"]:checked')?.value,
+        document.querySelector('input[name="q2"]:checked')?.value,
+        document.querySelector('input[name="q3"]:checked')?.value
+      ];
+
+      if (answers.includes(undefined)) {
+        document.getElementById("result").innerText = "Please answer all questions before submitting.";
+        return;
+      }
+
+      const score = { creative: 0, technical: 0, people: 0, business: 0 };
+      answers.forEach(ans => score[ans]++);
+
+      let top = Object.keys(score).reduce((a, b) => score[a] > score[b] ? a : b);
+
+      const careers = {
+        creative: "You may thrive in creative roles such as Graphic Designer, Content Creator, or Marketing Specialist.",
+        technical: "Consider technical paths like Software Engineer, Data Analyst, or IT Specialist.",
+        people: "You'd excel in people-oriented careers like HR, Customer Support, or Teaching.",
+        business: "You’re suited for business fields such as Project Management, Finance, or Consulting."
+      };
+
+      document.getElementById("result").innerText = careers[top];
+    }
+  </script>  <footer>
+    <p>&copy; 2025 Carrier Tools Pro. All rights reserved.</p>
   </footer>
 </body>
 </html>
