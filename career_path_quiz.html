@@ -1,130 +1,109 @@
 <!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Take the Career Path Quiz to discover your ideal career path based on your personality and preferences.">
-  <meta name="keywords" content="Career Path Quiz, Job Fit Test, Career Suggestions, Carrier Tools Pro">
-  <meta name="author" content="Carrier Tools Pro">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Career Path Quiz - Carrier Tools Pro</title>
   <link rel="stylesheet" href="style.css">
   <style>
     .quiz-container {
       background: linear-gradient(145deg, #1e1e2f, #23233b);
-      margin: 40px auto;
-      padding: 30px;
-      max-width: 700px;
-      border-radius: 20px;
+      border-radius: 1.25rem;
+      padding: 2rem;
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
       color: #fff;
     }
     .quiz-container h2 {
-      margin-bottom: 20px;
-      font-size: 24px;
       color: #00d4ff;
-      text-align: center;
+      margin-bottom: 1rem;
     }
     .question {
-      margin-bottom: 25px;
+      margin-bottom: 1.5rem;
     }
-    .question h4 {
-      margin-bottom: 10px;
+    .question h3 {
       color: #fff;
     }
     .question label {
       display: block;
-      margin-bottom: 8px;
-      font-weight: 500;
+      margin: 0.5rem 0;
       cursor: pointer;
     }
-    .btn {
+    #submit-btn {
       background-color: #00d4ff;
-      color: #0f0f1a;
       border: none;
-      padding: 10px 25px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 16px;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
       font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
     }
-    .btn:hover {
-      background-color: #00b3cc;
+    #submit-btn:hover {
+      background-color: #00b6e6;
     }
     #result {
-      margin-top: 30px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #00d4ff;
-      text-align: center;
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      color: #fff;
     }
   </style>
 </head>
-<body>  <header>
-    <h1>Career Path Quiz</h1>
+<body>
+  <header>
+    <h1>Carrier Tools Pro</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="tools.html">Tools</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
     </nav>
-  </header>  <div class="quiz-container">
-    <h2>Find Your Ideal Career Path</h2>
-    <form id="quizForm">
+  </header>  <section class="quiz-container">
+    <h2>Career Path Quiz</h2>
+    <form id="quiz-form">
       <div class="question">
-        <h4>1. What do you enjoy the most?</h4>
-        <label><input type="radio" name="q1" value="creative"> Creating or designing things</label>
-        <label><input type="radio" name="q1" value="technical"> Solving technical problems</label>
-        <label><input type="radio" name="q1" value="people"> Helping others</label>
-        <label><input type="radio" name="q1" value="business"> Planning and strategy</label>
-      </div><div class="question">
-    <h4>2. What is your top skill?</h4>
-    <label><input type="radio" name="q2" value="creative"> Creativity</label>
-    <label><input type="radio" name="q2" value="technical"> Logic</label>
-    <label><input type="radio" name="q2" value="people"> Communication</label>
-    <label><input type="radio" name="q2" value="business"> Leadership</label>
-  </div>
-
-  <div class="question">
-    <h4>3. How do you prefer to work?</h4>
-    <label><input type="radio" name="q3" value="creative"> Independently and innovatively</label>
-    <label><input type="radio" name="q3" value="technical"> With machines or code</label>
-    <label><input type="radio" name="q3" value="people"> Collaboratively with people</label>
-    <label><input type="radio" name="q3" value="business"> Managing tasks and goals</label>
-  </div>
-
-  <button type="button" class="btn" onclick="calculateResult()">See My Path</button>
-</form>
-
-<div id="result"></div>
-
-  </div>  <footer>
+        <h3>1. What type of work environment do you prefer?</h3>
+        <label><input type="radio" name="q1" value="creative"> Creative & Flexible</label>
+        <label><input type="radio" name="q1" value="structured"> Structured & Organized</label>
+        <label><input type="radio" name="q1" value="tech"> Tech & Problem-Solving</label>
+      </div>
+      <div class="question">
+        <h3>2. What’s your ideal daily activity?</h3>
+        <label><input type="radio" name="q2" value="creative"> Designing or brainstorming</label>
+        <label><input type="radio" name="q2" value="structured"> Managing data or logistics</label>
+        <label><input type="radio" name="q2" value="tech"> Coding or analyzing systems</label>
+      </div>
+      <div class="question">
+        <h3>3. Which subject did you enjoy most in school?</h3>
+        <label><input type="radio" name="q3" value="creative"> Art or Literature</label>
+        <label><input type="radio" name="q3" value="structured"> Business or Economics</label>
+        <label><input type="radio" name="q3" value="tech"> Math or Science</label>
+      </div>
+      <button id="submit-btn" type="submit">Submit</button>
+    </form>
+    <div id="result"></div>
+  </section>  <footer>
     <a href="cookie-policy.html">Cookie Policy</a> |
     <a href="privacy-policy.html">Privacy Policy</a>
+    <p style="margin-top: 0.5rem;">&copy; 2025 Carrier Tools Pro. All rights reserved.</p>
   </footer>  <script>
-    function calculateResult() {
-      const score = { creative: 0, technical: 0, people: 0, business: 0 };
-      const answers = [
-        document.querySelector('input[name="q1"]:checked'),
-        document.querySelector('input[name="q2"]:checked'),
-        document.querySelector('input[name="q3"]:checked')
-      ];
+    const form = document.getElementById('quiz-form');
+    const resultDiv = document.getElementById('result');
 
-      if (answers.some(a => a === null)) {
-        document.getElementById('result').innerText = 'Please answer all questions.';
-        return;
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const answers = [form.q1.value, form.q2.value, form.q3.value];
+      const counts = { creative: 0, structured: 0, tech: 0 };
+      answers.forEach(ans => counts[ans]++);
+
+      let resultText = '';
+      const max = Math.max(counts.creative, counts.structured, counts.tech);
+      if (counts.creative === max) {
+        resultText = 'You are suited for a Creative Career like Design, Writing, or Marketing!';
+      } else if (counts.structured === max) {
+        resultText = 'You may thrive in Structured roles like Project Management or Accounting!';
+      } else {
+        resultText = 'Tech Careers like Software Development or Data Science could be your path!';
       }
 
-      answers.forEach(a => {
-        score[a.value]++;
-      });
-
-      const topCategory = Object.keys(score).reduce((a, b) => score[a] > score[b] ? a : b);
-
-      const careerSuggestions = {
-        creative: 'You might enjoy careers in design, writing, or media.',
-        technical: 'You’re well-suited for roles in tech, engineering, or analysis.',
-        people: 'You may thrive in roles like teaching, HR, or counseling.',
-        business: 'You are likely to do well in business, strategy, or marketing.'
-      };
-
-      document.getElementById('result').innerText = careerSuggestions[topCategory];
-    }
+      resultDiv.textContent = resultText;
+    });
   </script></body>
 </html>
