@@ -1,12 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carrier Tools Pro - Resume Builder</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Build a professional resume in minutes with Carrier Tools Pro's free resume builder tool. Download in PDF instantly.">
+  <title>Resume Builder - Carrier Tools Pro</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .form-container {
+      background: linear-gradient(145deg, #1e1e2f, #23233b);
+      padding: 2rem;
+      border-radius: 1.25rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      color: #fff;
+    }
+    .form-container h2 {
+      color: #00d4ff;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 0.6rem;
+      border: none;
+      border-radius: 0.5rem;
+      background-color: #0f0f1a;
+      color: #fff;
+    }
+    .btn-generate {
+      background-color: #00d4ff;
+      color: #0f0f1a;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-weight: bold;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      display: block;
+      margin: 1rem auto;
+    }
+    .resume-output {
+      margin-top: 2rem;
+      background: #fff;
+      color: #000;
+      padding: 2rem;
+      border-radius: 1.25rem;
+    }
+    .download-btn {
+      margin-top: 1rem;
+      display: block;
+      text-align: center;
+      background: #00d4ff;
+      color: #0f0f1a;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  </style>
+</head><body>
   <header>
     <h1>Carrier Tools Pro</h1>
     <nav>
@@ -14,17 +71,68 @@
       <a href="tools.html">Tools</a>
       <a href="about.html">About Us</a>
       <a href="contact.html">Contact</a>
-      <a href="cookie-policy.html">Cookies</a>
-      <a href="privacy-policy.html">Privacy</a>
     </nav>
-  </header>
-  <section>
-    <h2>Resume Builder</h2>
-    <p>Tool content will be added here.</p>
-  </section>
-  <footer>
-    <a href="cookie-policy.html">Cookie Policy</a> |
-    <a href="privacy-policy.html">Privacy Policy</a>
-  </footer>
-</body>
-</html>
+  </header>  <section class="form-container">
+    <h2>Advanced Resume Builder</h2>
+    <div class="form-group">
+      <label for="fullName">Full Name</label>
+      <input type="text" id="fullName" placeholder="John Doe">
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="john@example.com">
+    </div>
+    <div class="form-group">
+      <label for="summary">Professional Summary</label>
+      <textarea id="summary" rows="4" placeholder="A brief summary about your experience and goals..."></textarea>
+    </div>
+    <div class="form-group">
+      <label for="skills">Skills</label>
+      <textarea id="skills" placeholder="JavaScript, HTML, CSS, SEO..."></textarea>
+    </div>
+    <div class="form-group">
+      <label for="experience">Experience</label>
+      <textarea id="experience" rows="4" placeholder="Job title, company, and responsibilities..."></textarea>
+    </div>
+    <div class="form-group">
+      <label for="education">Education</label>
+      <textarea id="education" placeholder="Degree, school name, year..."></textarea>
+    </div>
+    <button class="btn-generate" onclick="generateResume()">Generate Resume</button><div class="resume-output" id="resume"></div>
+<a id="downloadLink" class="download-btn" style="display:none;">Download PDF</a>
+
+  </section>  <footer>
+    <p>&copy; 2025 Carrier Tools Pro. All rights reserved. | <a href="cookie-policy.html">Cookie Policy</a> | <a href="privacy-policy.html">Privacy Policy</a></p>
+  </footer>  <script>
+    function generateResume() {
+      const name = document.getElementById('fullName').value;
+      const email = document.getElementById('email').value;
+      const summary = document.getElementById('summary').value;
+      const skills = document.getElementById('skills').value;
+      const experience = document.getElementById('experience').value;
+      const education = document.getElementById('education').value;
+
+      const resumeHTML = `
+        <h2>${name}</h2>
+        <p><strong>Email:</strong> ${email}</p>
+        <h3>Professional Summary</h3>
+        <p>${summary}</p>
+        <h3>Skills</h3>
+        <p>${skills}</p>
+        <h3>Experience</h3>
+        <p>${experience}</p>
+        <h3>Education</h3>
+        <p>${education}</p>
+      `;
+
+      const resumeDiv = document.getElementById('resume');
+      resumeDiv.innerHTML = resumeHTML;
+
+      const blob = new Blob([resumeHTML], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      const downloadLink = document.getElementById('downloadLink');
+      downloadLink.href = url;
+      downloadLink.download = `${name.replace(/\s/g, '_')}_Resume.pdf`;
+      downloadLink.style.display = 'block';
+    }
+  </script></body></html>
