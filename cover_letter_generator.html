@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carrier Tools Pro - Cover Letter Generator</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Generate professional cover letters instantly with Carrier Tools Pro. Create, preview, and download cover letters tailored to your job applications.">
+  <meta name="keywords" content="cover letter generator, resume cover letter, download cover letter, professional cover letter tool">
+  <meta name="author" content="Carrier Tools Pro">
+  <title>Cover Letter Generator - Carrier Tools Pro</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
   <header>
@@ -14,17 +17,53 @@
       <a href="tools.html">Tools</a>
       <a href="about.html">About Us</a>
       <a href="contact.html">Contact</a>
-      <a href="cookie-policy.html">Cookies</a>
-      <a href="privacy-policy.html">Privacy</a>
     </nav>
-  </header>
-  <section>
+  </header>  <section>
     <h2>Cover Letter Generator</h2>
-    <p>Tool content will be added here.</p>
-  </section>
-  <footer>
+    <p>Generate a customized and professional cover letter in seconds. Fill in the fields and download your cover letter as PDF.</p>
+    <form id="coverLetterForm">
+      <input type="text" id="fullName" placeholder="Full Name" required /><br /><br />
+      <input type="text" id="jobTitle" placeholder="Job Title You're Applying For" required /><br /><br />
+      <input type="text" id="companyName" placeholder="Company Name" required /><br /><br />
+      <input type="text" id="skills" placeholder="Your Skills (comma separated)" required /><br /><br />
+      <textarea id="aboutYou" rows="5" placeholder="Tell us about yourself" required></textarea><br /><br />
+      <button type="submit">Generate Cover Letter</button>
+      <button type="button" onclick="downloadPDF()">Download as PDF</button>
+    </form><div id="output" class="tool-card" style="display:none; margin-top: 2rem;"></div>
+
+  </section>  <footer>
+    <p>&copy; 2025 Carrier Tools Pro. All rights reserved.</p>
     <a href="cookie-policy.html">Cookie Policy</a> |
     <a href="privacy-policy.html">Privacy Policy</a>
-  </footer>
-</body>
+  </footer>  <script>
+    document.getElementById("coverLetterForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("fullName").value;
+      const job = document.getElementById("jobTitle").value;
+      const company = document.getElementById("companyName").value;
+      const skills = document.getElementById("skills").value;
+      const about = document.getElementById("aboutYou").value;
+      const letter = `
+        <h3>Dear Hiring Manager at ${company},</h3>
+        <p>My name is ${name}, and I am writing to express my strong interest in the ${job} position at ${company}. With skills in ${skills}, I believe I am an excellent fit for this role.</p>
+        <p>${about}</p>
+        <p>I am confident that my background and dedication make me a strong candidate. I would welcome the opportunity to discuss how I can contribute to ${company}.</p>
+        <p>Sincerely,<br>${name}</p>
+      `;
+      document.getElementById("output").innerHTML = letter;
+      document.getElementById("output").style.display = "block";
+    });
+
+    function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.html(document.getElementById("output"), {
+        callback: function (doc) {
+          doc.save("cover-letter.pdf");
+        },
+        x: 10,
+        y: 10
+      });
+    }
+  </script></body>
 </html>
