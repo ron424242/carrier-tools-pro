@@ -1,10 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carrier Tools Pro - Skill Matcher</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skill Matcher - Carrier Tools Pro</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    textarea {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      border: none;
+      resize: vertical;
+      font-size: 1rem;
+      background-color: #1e1e2f;
+      color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    button {
+      background-color: #00d4ff;
+      color: #0f0f1a;
+      border: none;
+      padding: 0.75rem 2rem;
+      border-radius: 0.75rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #00b8e6;
+    }
+
+    #result {
+      margin-top: 2rem;
+      background-color: #1e1e2f;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    ul {
+      padding-left: 1.5rem;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -14,17 +54,51 @@
       <a href="tools.html">Tools</a>
       <a href="about.html">About Us</a>
       <a href="contact.html">Contact</a>
-      <a href="cookie-policy.html">Cookies</a>
-      <a href="privacy-policy.html">Privacy</a>
     </nav>
   </header>
+
   <section>
     <h2>Skill Matcher</h2>
-    <p>Tool content will be added here.</p>
+    <p>Enter your skills to find matching career paths.</p>
+    <textarea id="skillsInput" rows="5" placeholder="e.g. communication, Python, design"></textarea>
+    <br><br>
+    <button onclick="matchSkills()">Match Careers</button>
+    <div id="result"></div>
   </section>
+
   <footer>
     <a href="cookie-policy.html">Cookie Policy</a> |
-    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="privacy-policy.html">Privacy Policy</a><br>
+    <p>&copy; 2025 Carrier Tools Pro. All rights reserved.</p>
   </footer>
+
+  <script>
+    const careerSuggestions = {
+      "communication": ["Public Relations", "Sales Representative", "Customer Service Manager"],
+      "python": ["Data Analyst", "Software Developer", "Machine Learning Engineer"],
+      "design": ["Graphic Designer", "UI/UX Designer", "Product Designer"],
+      "writing": ["Content Writer", "Technical Writer", "Copywriter"],
+      "excel": ["Financial Analyst", "Operations Manager", "Project Coordinator"]
+    };
+
+    function matchSkills() {
+      const input = document.getElementById('skillsInput').value.toLowerCase();
+      const skills = input.split(',').map(skill => skill.trim());
+      let matched = new Set();
+
+      skills.forEach(skill => {
+        if (careerSuggestions[skill]) {
+          careerSuggestions[skill].forEach(job => matched.add(job));
+        }
+      });
+
+      const resultDiv = document.getElementById('result');
+      if (matched.size > 0) {
+        resultDiv.innerHTML = `<h3>Suggested Careers:</h3><ul>${[...matched].map(job => `<li>${job}</li>`).join('')}</ul>`;
+      } else {
+        resultDiv.innerHTML = "<p>No matches found. Try different or broader skills.</p>";
+      }
+    }
+  </script>
 </body>
 </html>
