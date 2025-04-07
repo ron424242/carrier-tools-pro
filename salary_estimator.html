@@ -1,10 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carrier Tools Pro - Salary Estimator</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Salary Estimator - Carrier Tools Pro</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    input, select {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border-radius: 0.75rem;
+      border: none;
+      font-size: 1rem;
+      background-color: #1e1e2f;
+      color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    button {
+      background-color: #00d4ff;
+      color: #0f0f1a;
+      border: none;
+      padding: 0.75rem 2rem;
+      border-radius: 0.75rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #00b8e6;
+    }
+
+    #result {
+      margin-top: 2rem;
+      background-color: #1e1e2f;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -14,17 +50,49 @@
       <a href="tools.html">Tools</a>
       <a href="about.html">About Us</a>
       <a href="contact.html">Contact</a>
-      <a href="cookie-policy.html">Cookies</a>
-      <a href="privacy-policy.html">Privacy</a>
     </nav>
   </header>
+
   <section>
     <h2>Salary Estimator</h2>
-    <p>Tool content will be added here.</p>
+    <p>Estimate your salary based on your role, experience, and location.</p>
+
+    <label for="role">Job Role:</label>
+    <input type="text" id="role" placeholder="e.g. Software Engineer" />
+
+    <label for="experience">Years of Experience:</label>
+    <input type="number" id="experience" placeholder="e.g. 5" />
+
+    <label for="location">Location:</label>
+    <input type="text" id="location" placeholder="e.g. New York, NY" />
+
+    <button onclick="estimateSalary()">Estimate Salary</button>
+
+    <div id="result"></div>
   </section>
+
   <footer>
     <a href="cookie-policy.html">Cookie Policy</a> |
-    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="privacy-policy.html">Privacy Policy</a><br>
+    <p>&copy; 2025 Carrier Tools Pro. All rights reserved.</p>
   </footer>
+
+  <script>
+    function estimateSalary() {
+      const role = document.getElementById('role').value.trim().toLowerCase();
+      const experience = parseInt(document.getElementById('experience').value);
+      const location = document.getElementById('location').value.trim().toLowerCase();
+
+      let base = 50000;
+
+      if (role.includes("engineer")) base += 20000;
+      if (role.includes("manager")) base += 15000;
+      if (location.includes("new york")) base += 10000;
+      if (!isNaN(experience)) base += experience * 2000;
+
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = `<h3>Estimated Salary:</h3><p>$${base.toLocaleString()} / year</p>`;
+    }
+  </script>
 </body>
 </html>
