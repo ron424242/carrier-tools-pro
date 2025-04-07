@@ -1,38 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carrier Tools Pro - Home</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <h1>Carrier Tools Pro</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="tools.html">Tools</a>
-      <a href="about.html">About Us</a>
-      <a href="contact.html">Contact</a>
-      <a href="cookie-policy.html">Cookies</a>
-      <a href="privacy-policy.html">Privacy</a>
-    </nav>
-  </header>
-  <section>
-    <h2>Home</h2>
-    <p><div class="tool-cards">
-    <div class="card"><a href="resume_builder.html">Resume Builder</a></div>
-    <div class="card"><a href="cover_letter_generator.html">Cover Letter Generator</a></div>
-    <div class="card"><a href="career_path_quiz.html">Career Path Quiz</a></div>
-    <div class="card"><a href="salary_estimator.html">Salary Estimator</a></div>
-    <div class="card"><a href="job_title_explainer.html">Job Title Explainer</a></div>
-    <div class="card"><a href="linkedin_summary_generator.html">LinkedIn Summary Generator</a></div>
-    <div class="card"><a href="skill_matcher.html">Skill Matcher</a></div>
-  </div></p>
-  </section>
-  <footer>
-    <a href="cookie-policy.html">Cookie Policy</a> |
-    <a href="privacy-policy.html">Privacy Policy</a>
-  </footer>
-</body>
-</html>
+/* style.css */
+
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f7f9fc; color: #333; }
+
+header { background-color: #003366; color: white; padding: 1rem; text-align: center; }
+
+header h1 { margin: 0; font-size: 2rem; }
+
+nav { margin-top: 0.5rem; }
+
+nav a { color: #fff; margin: 0 1rem; text-decoration: none; font-weight: bold; }
+
+nav a:hover { text-decoration: underline; }
+
+.container { padding: 2rem; max-width: 1200px; margin: auto; }
+
+.intro { text-align: center; margin-bottom: 2rem; }
+
+.intro h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+
+.intro p { font-size: 1.1rem; color: #555; }
+
+.tool-overview { background-color: #fff; border-radius: 8px; padding: 2rem; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); }
+
+.tool-overview h3 { text-align: center; font-size: 1.8rem; margin-bottom: 1.5rem; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+
+.card { background-color: #f0f4ff; padding: 1rem; border-radius: 8px; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease; }
+
+.card:hover { transform: translateY(-5px); }
+
+.card h4 { margin-top: 0; color: #003366; }
+
+.card p { color: #444; font-size: 0.95rem; }
+
+.card a { text-decoration: none; color: #003366; }
+
+.card a:hover { text-decoration: underline; }
+
+footer { text-align: center; padding: 1rem; background-color: #003366; color: white; position: relative; bottom: 0; width: 100%; }
+
